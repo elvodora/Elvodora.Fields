@@ -1,0 +1,24 @@
+﻿@model Elvodora.Fields.CountryRegion.ViewModels.DisplayCountryRegionFieldViewModel
+@using OrchardCore.Mvc.Utilities;
+
+@{
+    // To display a very specific class name depending on the actual usage (i.e. technical name given on the dashboard)
+    // we can use these helpers.
+    var className = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify(); 
+    var countryName = Model.CountryName;
+    var countryCode = Model.CountryCode;
+    var countryRegions = Model.Regions;
+}
+
+@* Using these class names is conventional. All the Orchard Core fields have similar classes. Custom classes 
+    can be added of course (e.g. BEM classes). *@
+<div class="field field-type-countryfield field-name-@className">
+    <h2>@Model.PartFieldDefinition.DisplayName()</h2>
+    <h3>@countryName (@countryCode)</h3>        
+    <ul >
+        @foreach (var region in @countryRegions)
+        {
+           <li><h4>@region.Name (@region.Code)</h4></li>
+       }
+    </ul>
+</div> 

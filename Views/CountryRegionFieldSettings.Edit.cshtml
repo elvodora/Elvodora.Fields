@@ -1,0 +1,45 @@
+﻿@model Elvodora.Fields.CountryRegion.Settings.CountryRegionFieldSettings
+@using Elvodora.Fields.CountryRegion.Settings
+
+@{
+    var items = new List<SelectListItem>
+{
+        new SelectListItem { Value = SelectRegionOption.None.ToString(), Text = T["Without regions"].Value },
+        new SelectListItem { Value = SelectRegionOption.One.ToString(), Text = T["Select one region"].Value },
+        new SelectListItem { Value = SelectRegionOption.Multi.ToString(), Text = T["Select multi regions"].Value }
+    };
+}
+
+
+<fieldset class="form-group">
+    <div class="custom-control custom-checkbox">
+        <input asp-for="Required" type="checkbox" class="custom-control-input">
+        <label asp-for="Required" class="custom-control-label" >@T["Required"]</label>
+        <span class="hint">@T["Check if the field is required."]</span>
+
+    </div>
+</fieldset>
+
+<fieldset class="form-group">
+    <div class="row col-md">
+        <label asp-for="Hint">@T["Hint"]</label>
+        <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
+        <span class="hint">@T["The hint text to display for this field on the editor."]</span>
+    </div>
+</fieldset>
+
+<fieldset class="form-group">
+    <div class="row col-sm">
+        <label asp-for="Label">@T["Label"]</label>
+        <input asp-for="Label" class="form-control" />
+        <span class="hint">@T["The text associated to the checkbox."]</span>
+    </div>
+</fieldset>
+
+<fieldset class="form-group">
+    <div class="row col-md">
+        <label asp-for="SelectRegion">@T["Select region"]</label>
+        <select class="form-control" asp-for="SelectRegion" asp-items="@items"></select>
+        <span class="hint">@T["Define if and how will be selected regions of a country."]</span>
+    </div>
+</fieldset>
